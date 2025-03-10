@@ -1,0 +1,66 @@
+{% extends "web_app/base.html" %}
+{% load static %}
+    
+{% block content %}
+
+    
+    <div class="product-big-title-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="product-bit-title text-center">
+                        <h2> NEVER STOP LEARNING!! </h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="single-product-area">
+        <div class="zigzag-bottom"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="product-content-right">
+                        
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="product-images">
+                                    <div class="product-main-img">
+                                        <img src="{%  static  'web_app/img/DATABASE.jpg'  %}" alt="">
+                                    </div>
+                                    
+                                </div>
+                            </div>
+    {% for book in books %}
+            <div class="books" style="background-color:white;border-radius:7px;margin:20px;padding:6px;">
+            <table>
+            <td style="padding:5px 30px;width:10vw;">
+            <h2 class="product-name">Name of the book:{{book.name}}<br>Author:{{book.aname}}<br></h2>
+            <h6>ISBNnumber:{{book.isbnnumber}}<br>copy_Number:{{book.copyNo}}<br>Availability:{{book.status}}</h6>
+            </td>
+            </table>
+            </div>
+    {% endfor %}
+                            <div class="col-sm-6">
+                                <div class="product-inner">    
+                                    <h4>this is a very standard book and this book is very useful to gain knowledge about databse and information systems</h4>
+                                    <form action="favorites">
+                                        <button class="add_to_cart_button" type="submit">Add to favorites</button>
+                                    </form>    
+                                    <form method="POST">
+                                        {% csrf_token %} 
+                                        <h3>Do you wish to add this book to your bookshelf for borrowing later? </h3>
+                                        <input type="number" padding='3x' placeholder="ISBN Number" name="ISBN" width="2%">
+                                        <button class="button" type="submit" value="submit" id="myBtn" >Add to my Bookshelf</button>
+            
+                                    </form>   
+                                </div>
+                            </div>
+                        </div>                
+                </div>
+            </div>
+        </div>
+    </div>
+   
+{% endblock %}
